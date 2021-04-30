@@ -1,0 +1,9 @@
+C:\Users\Nathan\Documents\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\bin\Debug\Electronic_Voting_System.exe.config
+C:\Users\Nathan\Documents\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\bin\Debug\Electronic_Voting_System.exe
+C:\Users\Nathan\Documents\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\bin\Debug\Electronic_Voting_System.pdb
+C:\Users\Nathan\Documents\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\obj\Debug\Electronic_Voting_System.csprojAssemblyReference.cache
+C:\Users\Nathan\Documents\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\obj\Debug\Electronic_Voting_System.Properties.Resources.resources
+C:\Users\Nathan\Documents\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\obj\Debug\Electronic_Voting_System.csproj.GenerateResource.cache
+C:\Users\Nathan\Documents\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\obj\Debug\Electronic_Voting_System.csproj.CoreCompileInputs.cache
+C:\Users\Nathan\Documents\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\obj\Debug\Electronic_Voting_System.exe
+C:\Users\Nathan\Documents\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\obj\Debug\Electronic_Voting_System.pdb
