@@ -8,5 +8,6 @@ namespace Electronic_Voting_System
 {
     public class Election
     {
+        private string yeet;
     }
 }
