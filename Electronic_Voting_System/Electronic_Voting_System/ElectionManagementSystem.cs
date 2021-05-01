@@ -56,7 +56,7 @@ namespace Electronic_Voting_System
         // we'll need something like this to constantly check if the min_win_percentage or the deadline has been reached
         // total voters would just be length(Userlist)
         // current date will need to update somehow, the whole date system could be improved as its just strings, no error/format checking
-        public static void checkElection(Election election, List<Candidate> candidates, int total_voters, string current_date)
+        public static void checkElection(Election election, List<Candidate> candidates, int total_voters, DateTime current_date)
         {
             election.sortByVotes();
             // check if minimum win percentage has been reached by the candidate with the most votes
@@ -64,8 +64,8 @@ namespace Electronic_Voting_System
             {
                 election.stopElection();
             }
-            // check if the deadline has arrived
-            if (current_date == election.end_date)
+            // check if the deadline has passed
+            if (DateTime.Compare(current_date, election.end_date) > 0)
             {
                 election.stopElection();
             }
