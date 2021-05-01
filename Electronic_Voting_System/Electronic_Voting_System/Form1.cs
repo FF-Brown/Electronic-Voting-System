@@ -16,5 +16,23 @@ namespace Electronic_Voting_System
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // int loginResult = showLoginMenu();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // int registerResult = showRegisterMenu();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // show Election Info
+            // ElectionInfo info = EMS.getElectionInfo();
+            ElectionInfoForm infoForm = new ElectionInfoForm();
+            infoForm.Show();
+        }
     }
 }
