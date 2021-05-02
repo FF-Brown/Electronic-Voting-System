@@ -77,6 +77,7 @@ namespace Electronic_Voting_System
         public User GetCurrentUser()
         {
             return this.currentUser;
+
         }
 
         // adding/removing candidates (should be accessed from the admin portal/menu)

@@ -8,8 +8,8 @@ namespace Electronic_Voting_System
 {
     public class Election
     {
-        public string start_date{ get; set;}
-        public string end_date{ get; set;}
+        public DateTime start_date{ get; set;}
+        public DateTime end_date{ get; set;}
         public double min_win_percentage{ get; set;}
         public bool is_active{ get; set;}
         private List<Candidate> candidate_list; 
@@ -32,7 +32,7 @@ namespace Electronic_Voting_System
             this.is_active = false;
         }
 
-        public Election(List<Candidate> list, string start, string end, double min_win)
+        public Election(List<Candidate> list, DateTime start, DateTime end, double min_win)
         {
             candidate_list = list;
             start_date = start;
