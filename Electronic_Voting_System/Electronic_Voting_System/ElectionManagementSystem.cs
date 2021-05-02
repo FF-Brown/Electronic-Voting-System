@@ -14,9 +14,15 @@ namespace Electronic_Voting_System
 
         private List<User> pendingValidations;
 
-        private List<Candidate> candidate_list;
-
         private User currentUser;
+
+        public ElectionManagementSystem()
+        {
+            this.election = new Election();
+            this.users = new List<User>();
+            this.pendingValidations = new List<User>();
+            this.currentUser = null;
+        }
 
         public void AuthenticateUser(User user)
         {
@@ -38,6 +44,18 @@ namespace Electronic_Voting_System
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Creates a User object from the parameters.
+        /// Should validate entries - check that username not taken, email, birthdate and ssn in correct format, etc.
+        /// Adds the new User object to this.users and this.pendingValidations.
+        /// Returns true if valid input.
+        /// </summary>
+        public bool Register(string username, string password, string email, string birthDate, int SSN, string name)
+        {
+
+            throw new NotImplementedException();
+        }
+
         public List<User> GetPendingValidations()
         {
             return this.pendingValidations;
@@ -48,27 +66,18 @@ namespace Electronic_Voting_System
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Calculates demographics of voters. 
+        /// </summary>
         public Dictionary<string, int> GetDemographics()
         {
             throw new NotImplementedException();
         }
 
-        // we'll need something like this to constantly check if the min_win_percentage or the deadline has been reached
-        // total voters would just be length(Userlist)
-        // current date will need to update somehow, the whole date system could be improved as its just strings, no error/format checking
-        public static void checkElection(Election election, List<Candidate> candidates, int total_voters, DateTime current_date)
+        public User GetCurrentUser()
         {
-            election.sortByVotes();
-            // check if minimum win percentage has been reached by the candidate with the most votes
-            if ((candidates[0].total_votes / total_voters) * 100 > election.min_win_percentage)
-            {
-                election.stopElection();
-            }
-            // check if the deadline has passed
-            if (DateTime.Compare(current_date, election.end_date) > 0)
-            {
-                election.stopElection();
-            }
+            return this.currentUser;
+
         }
 
         // adding/removing candidates (should be accessed from the admin portal/menu)
@@ -90,5 +99,110 @@ namespace Electronic_Voting_System
             candidates.RemoveAll(r => r.name == name);
         }
 
+        public List<Candidate> GetCandidates()
+        {
+            return this.election.GetCandidates();
+        }
+
+        /// <summary>
+        /// Calls Election method to check end date.
+        /// </summary>
+        /// <returns></returns>
+        public bool ElectionHasEnded()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Checks this.users to see if username/password combo is listed.
+        /// If found, sets that User as this.currentUser and returns true.
+        /// Else returns false.
+        /// </summary>
+        public bool Login(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Returns election object for UI to display.
+        /// </summary>
+        public Election GetElection()
+        {
+            return this.election;
+        }
+
+        /// <summary>
+        /// Sets this.election to a new instance of Election.
+        /// </summary>
+        public void StartNewElection()
+        {
+
+        }
+
+        /// <summary>
+        /// Sets this.election to a new instance of Election.
+        /// Verifies that start date is before end date.
+        /// </summary>
+        public void StartNewElection(DateTime start, DateTime end)
+        {
+
+        }
+
+        /// <summary>
+        /// Create a Candidate object and pass it to Election.
+        /// </summary>
+        public void AddCandidate(string name, string party)
+        {
+
+        }
+
+        /// <summary>
+        /// Makes win percentage accessible for UI.
+        /// </summary>
+        public double GetMinWinPercentage()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Allows UI to set win percentage.
+        /// </summary>
+        public void SetMinWinPercentage()
+        {
+
+        }
+
+        /// <summary>
+        /// Pass to Election to remove a Candidate.
+        /// </summary>
+        /// <param name="candidate"></param>
+        public void RemoveCandidate(Candidate candidate)
+        {
+
+        }
+
+        /// <summary>
+        /// Remove candidate with index in list.
+        /// </summary>
+        public void RemoveCandidate(int index)
+        {
+
+        }
+
+        /// <summary>
+        /// Converts election start date to string for UI.
+        /// </summary>
+        public string GetStartDate()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Converts election end date to string for UI.
+        /// </summary>
+        public string GetEndDate()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
