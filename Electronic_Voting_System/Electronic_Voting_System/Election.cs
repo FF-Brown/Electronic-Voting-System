@@ -14,9 +14,22 @@ namespace Electronic_Voting_System
         public bool is_active{ get; set;}
         private List<Candidate> candidate_list; 
 
+        public Election()
+        {
+            candidate_list = new List<Candidate>();
+            this.start_date = string.Empty;
+            this.end_date = string.Empty;
+            this.min_win_percentage = 0;
+            this.is_active = false;
+        }
+
         public Election(List<Candidate> list)
         {
             candidate_list = list;
+            this.start_date = string.Empty;
+            this.end_date = string.Empty;
+            this.min_win_percentage = 0;
+            this.is_active = false;
         }
 
         public Election(List<Candidate> list, string start, string end, double min_win)
@@ -25,6 +38,12 @@ namespace Electronic_Voting_System
             start_date = start;
             end_date = end;
             min_win_percentage = min_win;
+            this.is_active = false;
+        }
+
+        public List<Candidate> GetCandidates()
+        {
+            return this.candidate_list;
         }
 
         // adds 1 vote to the inputted candidate name. 
@@ -68,5 +87,22 @@ namespace Electronic_Voting_System
                 Console.WriteLine(curr.name + "\t" + curr.party);
             }
         }
+
+        public void checkElection(int total_voters, string current_date)
+        {
+            this.sortByVotes();
+            // check if minimum win percentage has been reached by the candidate with the most votes
+            if ((this.candidate_list[0].total_votes / total_voters) * 100 > this.min_win_percentage)
+            {
+                this.stopElection();
+            }
+            // check if the deadline has arrived
+            if (current_date == this.end_date)
+            {
+                this.stopElection();
+            }
+        }
+
+
     }
 }
