@@ -44,6 +44,18 @@ namespace Electronic_Voting_System
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Creates a User object from the parameters.
+        /// Should validate entries - check that username not taken, email, birthdate and ssn in correct format, etc.
+        /// Adds the new User object to this.users and this.pendingValidations.
+        /// Returns true if valid input.
+        /// </summary>
+        public bool Register(string username, string password, string email, string birthDate, int SSN, string name)
+        {
+
+            throw new NotImplementedException();
+        }
+
         public List<User> GetPendingValidations()
         {
             return this.pendingValidations;
@@ -106,17 +118,6 @@ namespace Electronic_Voting_System
         /// Else returns false.
         /// </summary>
         public bool Login(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Creates a User object from the parameters.
-        /// Should validate entries - check that username not taken, email, birthdate and ssn in correct format, etc.
-        /// Adds the new User object to this.users and this.pendingValidations.
-        /// Returns true if valid input.
-        /// </summary>
-        public bool Register(string username, string password, string email, string birthDate, int SSN, string name)
         {
             throw new NotImplementedException();
         }
