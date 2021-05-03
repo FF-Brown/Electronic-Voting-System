@@ -37,6 +37,6 @@ namespace Electronic_Voting_System
 		public void setEmail(string e)			{	email = e;		}
 		public void setPW(string p)				{	pw = p;			}
 		public void setDOB(string d)			{	dob = d;		}
-		public void setSSN(string p)			{	ssn = s;		}
+		public void setSSN(string s)			{	ssn = s;		}
     }
 }

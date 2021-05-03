@@ -1,7 +1,7 @@
 ﻿
 namespace Electronic_Voting_System
 {
-    partial class Form1
+    partial class EMSMenuForm
     {
         /// <summary>
         /// Required designer variable.

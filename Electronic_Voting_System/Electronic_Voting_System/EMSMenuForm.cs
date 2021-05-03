@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Electronic_Voting_System
 {
-    public partial class Form1 : Form
+    public partial class EMSMenuForm : Form
     {
-        public Form1()
+        public EMSMenuForm()
         {
             InitializeComponent();
         }
