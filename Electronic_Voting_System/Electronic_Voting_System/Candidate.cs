@@ -12,6 +12,13 @@ namespace Electronic_Voting_System
         public string party{get; set;}
         public int total_votes{get; set;}
 
+        public Candidate()
+        {
+            name = string.Empty;
+            party = string.Empty;
+            total_votes = 0;
+        }
+
         public Candidate(string Name, string Party)
         {
             name = Name;

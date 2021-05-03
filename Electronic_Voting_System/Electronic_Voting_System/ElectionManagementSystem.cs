@@ -10,23 +10,23 @@ namespace Electronic_Voting_System
     {
         private Election election;
 
-        private List<User> users;
+        private Dictionary<string, User> users;
 
-        private List<User> pendingValidations;
+        private Dictionary<string, User> pendingValidations;
 
         private User currentUser;
 
         public ElectionManagementSystem()
         {
             this.election = new Election();
-            this.users = new List<User>();
-            this.pendingValidations = new List<User>();
+            this.users = new Dictionary<string, User>();
+            this.pendingValidations = new Dictionary<string, User>();
             this.currentUser = null;
         }
 
         public void AuthenticateUser(User user)
         {
-            throw new NotImplementedException();
+            user.setIsRegistered(true);
         }
 
         public void DisplayAdminPortal()
@@ -34,29 +34,53 @@ namespace Electronic_Voting_System
             throw new NotImplementedException();
         }
 
-        public List<User> GetUserList()
+        public Dictionary<string, User> GetUserList()
         {
             return this.users;
         }
 
+        /// <summary>
+        /// Adds new User object to this.users and this.pendingValidations.
+        /// </summary>
+        /// <param name="user"></param>
         public void RegisterUser(User user)
         {
-            throw new NotImplementedException();
+            this.users.Add(user.getUserProfile().getUsername(), user);
+            this.pendingValidations.Add(user.getUserProfile().getUsername(), user);
         }
 
         /// <summary>
         /// Creates a User object from the parameters.
         /// Should validate entries - check that username not taken, email, birthdate and ssn in correct format, etc.
-        /// Adds the new User object to this.users and this.pendingValidations.
         /// Returns true if valid input.
         /// </summary>
-        public bool Register(string username, string password, string email, string birthDate, int SSN, string name)
+        public bool Register(string username, string password, string email, string birthDate, int SSN, string name, string address)
         {
+            bool createdUser = false;
 
-            throw new NotImplementedException();
+            if (!this.users.ContainsKey(username))
+            {
+                if (password != string.Empty)
+                {
+                    if (SSN.ToString().Length == 9)
+                    {
+                        try
+                        {
+                            DateTime.Parse(birthDate);
+                            this.RegisterUser(new User(new Profile(name, username, address, email, password, birthDate, SSN)));
+                            createdUser = true;
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
+                }
+            }
+
+            return createdUser;
         }
 
-        public List<User> GetPendingValidations()
+        public Dictionary<string, User> GetPendingValidations()
         {
             return this.pendingValidations;
         }
@@ -77,26 +101,6 @@ namespace Electronic_Voting_System
         public User GetCurrentUser()
         {
             return this.currentUser;
-
-        }
-
-        // adding/removing candidates (should be accessed from the admin portal/menu)
-        public static void addCandidate(List<Candidate> candidates)
-        {
-            Console.WriteLine("Enter Candidates Name: ");
-            string name = Console.ReadLine();
-            Console.WriteLine("Enter Candidates Party: ");
-            string party = Console.ReadLine();
-
-            candidates.Add(new Candidate(name, party));
-        }
-        // adding/removing candidates (should be accessed from the admin portal/menu)
-        public static void removeCandidate(List<Candidate> candidates)
-        {
-            Console.WriteLine("Enter Candidates Name to Remove:");
-            string name = Console.ReadLine();
-
-            candidates.RemoveAll(r => r.name == name);
         }
 
         public List<Candidate> GetCandidates()
@@ -105,12 +109,12 @@ namespace Electronic_Voting_System
         }
 
         /// <summary>
-        /// Calls Election method to check end date.
+        /// Compares election end date to Now.
+        /// If end date <= Now, returns true;
         /// </summary>
-        /// <returns></returns>
         public bool ElectionHasEnded()
         {
-            throw new NotImplementedException();
+            return DateTime.Compare(this.election.end_date, DateTime.Now) <= 0;
         }
 
         /// <summary>
@@ -120,7 +124,17 @@ namespace Electronic_Voting_System
         /// </summary>
         public bool Login(string username, string password)
         {
-            throw new NotImplementedException();
+            bool success = false;
+            if (this.users.ContainsKey(username))
+            {
+                if (this.users[username].getUserProfile().getPW() == password)
+                {
+                    this.currentUser = this.users[username];
+                    success = true;
+                }
+            }
+
+            return success;
         }
 
         /// <summary>
@@ -136,16 +150,45 @@ namespace Electronic_Voting_System
         /// </summary>
         public void StartNewElection()
         {
-
+            this.election = new Election();
         }
 
         /// <summary>
         /// Sets this.election to a new instance of Election.
+        /// Accepts any standard date format.
         /// Verifies that start date is before end date.
+        /// Returns false if dates are not correctly formatted or if start date >= end date.
         /// </summary>
-        public void StartNewElection(DateTime start, DateTime end)
+        public bool StartNewElection(string startDate, string endDate)
         {
+            bool startedNewElection = false;
 
+            if (startDate is null || endDate is null || startDate.Length < 10 || endDate.Length < 10)
+            {
+                return startedNewElection;
+            }
+
+            try
+            {
+                DateTime startDT = DateTime.Parse(startDate);
+                try
+                {
+                    DateTime endDT = DateTime.Parse(endDate);
+                    if (DateTime.Compare(startDT, endDT) < 0)
+                    {
+                        this.election = new Election(new List<Candidate>(), startDT, endDT, 50);
+                        startedNewElection = true;
+                    }
+                }
+                catch (Exception)
+                {
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return startedNewElection;
         }
 
         /// <summary>
@@ -153,7 +196,7 @@ namespace Electronic_Voting_System
         /// </summary>
         public void AddCandidate(string name, string party)
         {
-
+            this.election.addCandidate(new Candidate(name, party));
         }
 
         /// <summary>
@@ -161,32 +204,32 @@ namespace Electronic_Voting_System
         /// </summary>
         public double GetMinWinPercentage()
         {
-            throw new NotImplementedException();
+            return this.election.min_win_percentage;
         }
 
         /// <summary>
         /// Allows UI to set win percentage.
         /// </summary>
-        public void SetMinWinPercentage()
+        public void SetMinWinPercentage(double percentage)
         {
-
+            this.election.min_win_percentage = percentage;
         }
 
         /// <summary>
         /// Pass to Election to remove a Candidate.
         /// </summary>
         /// <param name="candidate"></param>
-        public void RemoveCandidate(Candidate candidate)
+        public bool RemoveCandidate(Candidate candidate)
         {
-
+            return this.election.removeCandidate(candidate);
         }
 
         /// <summary>
         /// Remove candidate with index in list.
         /// </summary>
-        public void RemoveCandidate(int index)
+        public bool RemoveCandidate(int index)
         {
-
+            return this.election.removeCandidate(index);
         }
 
         /// <summary>
@@ -194,7 +237,11 @@ namespace Electronic_Voting_System
         /// </summary>
         public string GetStartDate()
         {
-            throw new NotImplementedException();
+            DateTime dt = this.election.start_date;
+            string output = dt.Year
+                + "-" + dt.Month
+                + "-" + dt.Day;
+            return output;
         }
 
         /// <summary>
@@ -202,7 +249,11 @@ namespace Electronic_Voting_System
         /// </summary>
         public string GetEndDate()
         {
-            throw new NotImplementedException();
+            DateTime dt = this.election.end_date;
+            string output = dt.Year
+                + "-" + dt.Month
+                + "-" + dt.Day;
+            return output;
         }
     }
 }

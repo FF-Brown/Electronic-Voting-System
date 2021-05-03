@@ -17,18 +17,18 @@ namespace Electronic_Voting_System
         public Election()
         {
             candidate_list = new List<Candidate>();
-            this.start_date = string.Empty;
-            this.end_date = string.Empty;
-            this.min_win_percentage = 0;
+            this.start_date = DateTime.Now;
+            this.end_date = DateTime.Now;
+            this.min_win_percentage = 50;
             this.is_active = false;
         }
 
         public Election(List<Candidate> list)
         {
             candidate_list = list;
-            this.start_date = string.Empty;
-            this.end_date = string.Empty;
-            this.min_win_percentage = 0;
+            this.start_date = DateTime.Now;
+            this.end_date = DateTime.Now;
+            this.min_win_percentage = 50;
             this.is_active = false;
         }
 
@@ -103,6 +103,25 @@ namespace Electronic_Voting_System
             }
         }
 
+        public void addCandidate(Candidate candidate)
+        {
+            this.candidate_list.Add(candidate);
+        }
 
+        public bool removeCandidate(Candidate candidate)
+        {
+            return this.candidate_list.Remove(candidate);
+        }
+
+        public bool removeCandidate(int index)
+        {
+            if (index >= 0 && index < this.candidate_list.Count)
+            {
+                this.candidate_list.RemoveAt(index);
+                return true;
+            }
+
+            return false;
+        }
     }
 }

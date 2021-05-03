@@ -31,22 +31,31 @@ namespace Electronic_Voting_System
 			Candidate votedCandidate = new Candidate();
 		}
 
-		/******** Getters ********/ 
+		public User(Profile profile)
+        {
+			this.userProfile = profile;
+			isRegistered = false;
+			hasVoted = false;
+			isAdmin = false;
+			Candidate votedCandidate = new Candidate();
+		}
+
+		/******** Getters ********/
 
 		// return whether the user is an administrator
-		public bool getIsAdmin(void)				{ return isAdmin; }
+		public bool getIsAdmin()				{ return isAdmin; }
 
 		// return whether the user has voted
-		public bool getHasVoted(void)				{ return hasVoted;}
+		public bool getHasVoted()				{ return hasVoted;}
 
 		// return whether the user is registered 
-		public bool getIsRegistered(void)			{ return isRegistered; }
+		public bool getIsRegistered()			{ return isRegistered; }
 
 		// return the Candidate the user voted for
-		public Candidate getVotedCandidate(void)	{ return votedCandidate; }
+		public Candidate getVotedCandidate()	{ return votedCandidate; }
 
 		// return the user's profile
-		public Profile getUserProfile(void)			{ return userProfile; }
+		public Profile getUserProfile()			{ return userProfile; }
 
 		/******** Setters ********/ 
 
