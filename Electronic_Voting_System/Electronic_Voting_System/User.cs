@@ -31,7 +31,16 @@ namespace Electronic_Voting_System
 			Candidate votedCandidate = new Candidate();
 		}
 
-		/******** Getters ********/ 
+		public User(Profile profile)
+        {
+			this.userProfile = profile;
+			isRegistered = false;
+			hasVoted = false;
+			isAdmin = false;
+			Candidate votedCandidate = new Candidate();
+		}
+
+		/******** Getters ********/
 
 		// return whether the user is an administrator
 		public bool getIsAdmin()				{ return isAdmin; }

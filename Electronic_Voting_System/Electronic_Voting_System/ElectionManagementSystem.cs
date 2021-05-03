@@ -39,21 +39,45 @@ namespace Electronic_Voting_System
             return this.users;
         }
 
+        /// <summary>
+        /// Adds new User object to this.users and this.pendingValidations.
+        /// </summary>
+        /// <param name="user"></param>
         public void RegisterUser(User user)
         {
-            throw new NotImplementedException();
+            this.users.Add(user.getUserProfile().getUsername(), user);
+            this.pendingValidations.Add(user.getUserProfile().getUsername(), user);
         }
 
         /// <summary>
         /// Creates a User object from the parameters.
         /// Should validate entries - check that username not taken, email, birthdate and ssn in correct format, etc.
-        /// Adds the new User object to this.users and this.pendingValidations.
         /// Returns true if valid input.
         /// </summary>
-        public bool Register(string username, string password, string email, string birthDate, int SSN, string name)
+        public bool Register(string username, string password, string email, string birthDate, int SSN, string name, string address)
         {
+            bool createdUser = false;
 
-            throw new NotImplementedException();
+            if (!this.users.ContainsKey(username))
+            {
+                if (password != string.Empty)
+                {
+                    if (SSN.ToString().Length == 9)
+                    {
+                        try
+                        {
+                            DateTime.Parse(birthDate);
+                            this.RegisterUser(new User(new Profile(name, username, address, email, password, birthDate, SSN)));
+                            createdUser = true;
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
+                }
+            }
+
+            return createdUser;
         }
 
         public Dictionary<string, User> GetPendingValidations()
@@ -79,37 +103,18 @@ namespace Electronic_Voting_System
             return this.currentUser;
         }
 
-        // adding/removing candidates (should be accessed from the admin portal/menu)
-        public static void addCandidate(List<Candidate> candidates)
-        {
-            Console.WriteLine("Enter Candidates Name: ");
-            string name = Console.ReadLine();
-            Console.WriteLine("Enter Candidates Party: ");
-            string party = Console.ReadLine();
-
-            candidates.Add(new Candidate(name, party));
-        }
-        // adding/removing candidates (should be accessed from the admin portal/menu)
-        public static void removeCandidate(List<Candidate> candidates)
-        {
-            Console.WriteLine("Enter Candidates Name to Remove:");
-            string name = Console.ReadLine();
-
-            candidates.RemoveAll(r => r.name == name);
-        }
-
         public List<Candidate> GetCandidates()
         {
             return this.election.GetCandidates();
         }
 
         /// <summary>
-        /// Calls Election method to check end date.
+        /// Compares election end date to Now.
+        /// If end date <= Now, returns true;
         /// </summary>
-        /// <returns></returns>
         public bool ElectionHasEnded()
         {
-            throw new NotImplementedException();
+            return DateTime.Compare(this.election.end_date, DateTime.Now) <= 0;
         }
 
         /// <summary>
@@ -150,8 +155,9 @@ namespace Electronic_Voting_System
 
         /// <summary>
         /// Sets this.election to a new instance of Election.
-        /// Currently accepts dates in the form YYYY-MM-DD, YYYY/MM/DD, MM-DD-YYYY or MM/DD/YYYY.
+        /// Accepts any standard date format.
         /// Verifies that start date is before end date.
+        /// Returns false if dates are not correctly formatted or if start date >= end date.
         /// </summary>
         public bool StartNewElection(string startDate, string endDate)
         {
@@ -168,7 +174,11 @@ namespace Electronic_Voting_System
                 try
                 {
                     DateTime endDT = DateTime.Parse(endDate);
-                    this.election = new Election(new List<Candidate>(), startDT, endDT, 50);
+                    if (DateTime.Compare(startDT, endDT) < 0)
+                    {
+                        this.election = new Election(new List<Candidate>(), startDT, endDT, 50);
+                        startedNewElection = true;
+                    }
                 }
                 catch (Exception)
                 {
