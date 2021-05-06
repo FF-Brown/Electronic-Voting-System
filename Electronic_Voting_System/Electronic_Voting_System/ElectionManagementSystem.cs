@@ -371,7 +371,66 @@ namespace Electronic_Voting_System
         /// </summary>
         public bool loadFromFile(Stream electionInFile, Stream userInFile)
         {
-            throw new NotImplementedException();
+            XmlDocument electionDoc = new XmlDocument();
+
+            // Begin loading Xml document.
+            if (electionInFile != null)
+            {
+                electionDoc.Load(electionInFile);
+                if (electionDoc.HasChildNodes)
+                {
+                    XmlNode root;
+                    try
+                    {
+                        root = electionDoc["EMS"];
+                        root = root["election"];
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+
+                    // Clear election in EMS wrapper.
+                    this.election = new Election();
+
+                    if (root.HasChildNodes)
+                    {
+                        this.XMLToElection(out this.election, root);
+                    }
+                }
+            }
+
+            XmlDocument userDoc = new XmlDocument();
+
+            // Begin loading Xml document.
+            if (userInFile != null)
+            {
+                userDoc.Load(userInFile);
+                if (userDoc.HasChildNodes)
+                {
+                    XmlNode userRoot;
+                    try
+                    {
+                        userRoot = userDoc["userList"];
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+
+                    // Clear userList in userList wrapper.
+                    this.users = new Dictionary<string, User>();
+
+                    User newUser = new User(); // Temp user object
+
+                    foreach (XmlNode userNode in userRoot.ChildNodes)
+                    {
+                        this.XMLToUser(out newUser, userRoot); // Load user element to user object
+                        this.users.Add(newUser.getUserProfile().getName(), newUser); // Add user to user dictionary
+                    }
+                }
+            }
+            return true;
         }
 
         internal bool ElectionToXML(Election election, out XmlElement xml)
@@ -437,12 +496,22 @@ namespace Electronic_Voting_System
         {
             election = new Election();
 
-            election.start_date = DateTime.Parse(xml.Attributes["startDate"].Value);
-            election.end_date = DateTime.Parse(xml.Attributes["endDate"].Value);
-            election.min_win_percentage = Convert.ToDouble(xml.Attributes["winPercentage"].Value);
-            election.is_active = Convert.ToBoolean(xml.Attributes["active"].Value);
+            election.start_date = DateTime.Parse(xml.Attributes["startDate"].Value); // Load start date
+            election.end_date = DateTime.Parse(xml.Attributes["endDate"].Value); // Load end date
+            election.min_win_percentage = Convert.ToDouble(xml.Attributes["winPercentage"].Value); // Load win percentage
+            election.is_active = Convert.ToBoolean(xml.Attributes["active"].Value); // Load isActive
 
-            // NEED TO LOAD CANDIDATES TO LIST
+            Candidate newCandidate = new Candidate(); // Create temp candidate object
+
+            foreach (XmlNode candidate in xml.ChildNodes)
+            {
+                if (candidate.Name == "candidate") // If XML element Name == "candidate"
+                {
+                    XMLToCandidate(out newCandidate, xml); // Load one candidate from the xml
+                    this.election.addCandidate(newCandidate); // Add new candidate to election
+                }
+            }
+           
             return true;
         }
 
