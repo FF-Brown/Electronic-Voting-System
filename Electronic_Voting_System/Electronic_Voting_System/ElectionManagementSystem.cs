@@ -293,7 +293,7 @@ namespace Electronic_Voting_System
         {
             // Create temporary XmlDoc to create Element and Attribute objects.
             XmlDocument doc = new XmlDocument();
-            xml = doc.CreateElement("shape");
+            xml = doc.CreateElement("election");
 
             // Create and assign startDate element.
             XmlElement startDateElement = doc.CreateElement("startDate");
@@ -307,7 +307,7 @@ namespace Electronic_Voting_System
 
             // Create and assign endDate element.
             XmlElement endDateElement = doc.CreateElement("endDate");
-            endDateElement.InnerText = election.start_date.Date.ToString();
+            endDateElement.InnerText = election.end_date.Date.ToString();
             xml.AppendChild(endDateElement);
 
             // Append newline.
@@ -399,7 +399,71 @@ namespace Electronic_Voting_System
 
         internal bool UserToXML(User user, out XmlElement xml)
         {
-            throw new NotImplementedException();
+            // Create temporary XmlDoc to create Element and Attribute objects.
+            XmlDocument doc = new XmlDocument();
+            xml = doc.CreateElement("user");
+
+            // Create and assign NAME element.
+            XmlElement nameElement = doc.CreateElement("name");
+            nameElement.InnerText = user.getUserProfile().getName();
+            xml.AppendChild(nameElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                nameElement.OuterXml,
+                "\n    " + nameElement.OuterXml + " \n    ");
+
+            // Create and assign USERNAME element.
+            XmlElement usernameElement = doc.CreateElement("username");
+            usernameElement.InnerText = user.getUserProfile().getUsername();
+            xml.AppendChild(usernameElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                usernameElement.OuterXml,
+                "\n    " + usernameElement.OuterXml + " \n    ");
+
+            // Create and assign ADDRESS/STATE element.
+            XmlElement addressElement = doc.CreateElement("address");
+            addressElement.InnerText = user.getUserProfile().getState();
+            xml.AppendChild(addressElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                addressElement.OuterXml,
+                "\n    " + addressElement.OuterXml + " \n    ");
+
+            // Create and assign PASSWORD element.
+            XmlElement passwordElement = doc.CreateElement("pw");
+            passwordElement.InnerText = user.getUserProfile().getPW();
+            xml.AppendChild(passwordElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                passwordElement.OuterXml,
+                "\n    " + passwordElement.OuterXml + " \n    ");
+
+            // Create and assign DOB element.
+            XmlElement dobElement = doc.CreateElement("dob");
+            dobElement.InnerText = user.getUserProfile().getDOB();
+            xml.AppendChild(dobElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                dobElement.OuterXml,
+                "\n    " + dobElement.OuterXml + " \n    ");
+
+            // Create and assign SSN element.
+            XmlElement ssnElement = doc.CreateElement("ssn");
+            ssnElement.InnerText = user.getUserProfile().getSSN().ToString();
+            xml.AppendChild(ssnElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                ssnElement.OuterXml,
+                ssnElement.OuterXml + " \n    ");
+
+            return true;
         }
 
         internal bool XMLToUser(out User user, XmlNode xml)
