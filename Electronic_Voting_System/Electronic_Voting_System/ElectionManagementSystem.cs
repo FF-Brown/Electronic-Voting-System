@@ -350,7 +350,15 @@ namespace Electronic_Voting_System
 
         internal bool XMLToElection(out Election election, XmlNode xml)
         {
-            throw new NotImplementedException();
+            election = new Election();
+
+            election.start_date = DateTime.Parse(xml.Attributes["startDate"].Value);
+            election.end_date = DateTime.Parse(xml.Attributes["endDate"].Value);
+            election.min_win_percentage = Convert.ToDouble(xml.Attributes["winPercentage"].Value);
+            election.is_active = Convert.ToBoolean(xml.Attributes["active"].Value);
+
+            // NEED TO LOAD CANDIDATES TO LIST
+            return true;
         }
 
         internal bool CandidateToXML(Candidate candidate, out XmlElement xml)
@@ -394,7 +402,13 @@ namespace Electronic_Voting_System
 
         internal bool XMLToCandidate(out Candidate candidate, XmlNode xml)
         {
-            throw new NotImplementedException();
+            candidate = new Candidate();
+
+            candidate.name = xml.Attributes["name"].Value;
+            candidate.party = xml.Attributes["party"].Value;
+            candidate.total_votes = Convert.ToInt32(xml.Attributes["votes"].Value);
+
+            return true;
         }
 
         internal bool UserToXML(User user, out XmlElement xml)
