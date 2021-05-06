@@ -94,7 +94,8 @@ namespace Electronic_Voting_System
         /// </summary>
         public Dictionary<string, int> GetDemographics()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return null;
         }
 
         public User GetCurrentUser()

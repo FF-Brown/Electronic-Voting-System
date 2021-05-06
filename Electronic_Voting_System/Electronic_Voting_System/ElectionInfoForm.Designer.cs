@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace Electronic_Voting_System
 {
     partial class ElectionInfoForm
@@ -35,7 +37,7 @@ namespace Electronic_Voting_System
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.SuspendLayout();
             // 
             // label1
@@ -43,7 +45,7 @@ namespace Electronic_Voting_System
             this.label1.AutoSize = true;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(161, 9);
+            this.label1.Location = new System.Drawing.Point(192, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(406, 53);
             this.label1.TabIndex = 0;
@@ -55,11 +57,7 @@ namespace Electronic_Voting_System
             this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 25;
-            this.listBox1.Items.AddRange(new object[] {
-            "Candidate 1",
-            "Candidate 2",
-            "Candidate 3"});
-            this.listBox1.Location = new System.Drawing.Point(26, 155);
+            this.listBox1.Location = new System.Drawing.Point(48, 155);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(196, 279);
             this.listBox1.TabIndex = 1;
@@ -69,7 +67,7 @@ namespace Electronic_Voting_System
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(42, 110);
+            this.label2.Location = new System.Drawing.Point(64, 107);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(160, 32);
             this.label2.TabIndex = 2;
@@ -102,15 +100,18 @@ namespace Electronic_Voting_System
             this.dateTimePicker1.Size = new System.Drawing.Size(242, 22);
             this.dateTimePicker1.TabIndex = 5;
             // 
-            // groupBox1
+            // tableLayoutPanel1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.AliceBlue;
-            this.groupBox1.Location = new System.Drawing.Point(361, 194);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(360, 183);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Results";
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(422, 183);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(262, 216);
+            this.tableLayoutPanel1.TabIndex = 6;
             // 
             // ElectionInfoForm
             // 
@@ -118,7 +119,7 @@ namespace Electronic_Voting_System
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -140,6 +141,6 @@ namespace Electronic_Voting_System
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
