@@ -48,6 +48,7 @@ namespace Electronic_Voting_System
 
 		// Setters
 		public void setName(string n )			{	name = n;		}
+		public void setUsername(string u)		{ username = u; }
 		public void setState(string s)		{	state = s;	}
 		public void setEmail(string e)			{	email = e;		}
 		public void setPW(string p)				{	pw = p;			}
