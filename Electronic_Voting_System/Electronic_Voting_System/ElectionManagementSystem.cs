@@ -105,7 +105,7 @@ namespace Electronic_Voting_System
                                                                                 {"OK",0},{"OR",0},{"PA",0},{"RI",0},{"SC",0},
                                                                                 {"SD",0},{"TN",0},{"TX",0},{"UT",0},{"VT",0},
                                                                                 {"VA",0},{"WA",0},{"WV",0},{"WI",0},{"WY",0}};
-            foreach (User user in this.users)
+            foreach (User user in this.users.Values)
             {
                 demographics[user.getUserProfile().getState()]++;
             }
@@ -426,7 +426,15 @@ namespace Electronic_Voting_System
                     foreach (XmlNode userNode in userRoot.ChildNodes)
                     {
                         this.XMLToUser(out newUser, userRoot); // Load user element to user object
-                        this.users.Add(newUser.getUserProfile().getName(), newUser); // Add user to user dictionary
+
+                        if (newUser.getIsRegistered())
+                        {
+                            this.users.Add(newUser.getUserProfile().getName(), newUser); // Add user to user if they are registered
+                        }
+                        else
+                        {
+                            this.pendingValidations.Add(newUser.getUserProfile().getName(), newUser); // Add user to pendingValidations if they are not yet registered
+                        }
                     }
                 }
             }
@@ -603,7 +611,7 @@ namespace Electronic_Voting_System
 
             // Create and assign email element.
             XmlElement emailElement = doc.CreateElement("email");
-            addressElement.InnerText = user.getUserProfile().getEmail();
+            emailElement.InnerText = user.getUserProfile().getEmail();
             xml.AppendChild(emailElement);
 
             // Append newline.
@@ -639,7 +647,37 @@ namespace Electronic_Voting_System
             // Append newline.
             xml.InnerXml = xml.InnerXml.Replace(
                 ssnElement.OuterXml,
-                ssnElement.OuterXml + " \n    ");
+                "\n    " + ssnElement.OuterXml + " \n    ");
+
+            // Create and assign IsAdmin element.
+            XmlElement adminElement = doc.CreateElement("isAdmin");
+            adminElement.InnerText = user.getIsAdmin().ToString();
+            xml.AppendChild(adminElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                adminElement.OuterXml,
+                "\n    " + adminElement.OuterXml + " \n    ");
+
+            // Create and assign hasVoted element.
+            XmlElement hasVotedElement = doc.CreateElement("hasVoted");
+            hasVotedElement.InnerText = user.getHasVoted().ToString();
+            xml.AppendChild(hasVotedElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                hasVotedElement.OuterXml,
+                "\n    " + hasVotedElement.OuterXml + " \n    ");
+
+            // Create and assign isRegistered element.
+            XmlElement registeredElement = doc.CreateElement("isRegistered");
+            registeredElement.InnerText = user.getIsRegistered().ToString();
+            xml.AppendChild(registeredElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                registeredElement.OuterXml,
+                registeredElement.OuterXml + " \n    ");
 
             return true;
         }
@@ -661,6 +699,9 @@ namespace Electronic_Voting_System
             user.getUserProfile().setPW(xml.Attributes["pw"].Value); // Set password
             user.getUserProfile().setDOB(xml.Attributes["dob"].Value); // Set DOB
             user.getUserProfile().setSSN(Convert.ToInt32(xml.Attributes["ssn"].Value)); // Set SSN
+            user.setAdmin(Convert.ToBoolean(xml.Attributes["isAdmin"].Value)); // Set isAdmin
+            user.setIsRegistered(Convert.ToBoolean(xml.Attributes["isRegistered"].Value)); // Set isRegistered
+            user.setHasVoted(Convert.ToBoolean(xml.Attributes["hasVoted"].Value)); // Set hasVoted
 
             return true;
         }
