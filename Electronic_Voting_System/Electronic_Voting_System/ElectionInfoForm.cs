@@ -16,9 +16,11 @@ namespace Electronic_Voting_System
         public ElectionInfoForm(ElectionManagementSystem EMS)
         {
             InitializeComponent();
+            this.Text = "Election Information";
             this.EMS = EMS;
 
             // Fill out all the election info with the info in the EMS
+            //EMS.loadFromFile();
 
             // First fill out the candidate list
             List<Candidate> candidateList = EMS.GetCandidates();
@@ -38,13 +40,20 @@ namespace Electronic_Voting_System
             }
 
             // Update the demographics
-            //Dictionary<string, int> demographics = EMS.GetDemographics();
-            
-            //foreach (var demographic in demographics)
-            //{
-                //this.tableLayoutPanel1.Controls.ad
+            Dictionary<string, int> demographics = EMS.GetDemographics();
 
-            //}
+            // Display demographics in the tablelayoutpanel
+            this.tableLayoutPanel1.Controls.Add(new Label() { Text = "State:", TextAlign = ContentAlignment.MiddleCenter }, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(new Label() { Text = "Votes:", TextAlign = ContentAlignment.MiddleCenter }, 1, 0);
+            foreach (var demographic in demographics)
+            {
+            
+                this.tableLayoutPanel1.RowCount++;
+                this.tableLayoutPanel1.Controls.Add(new Label() { Text = demographic.Key, TextAlign = ContentAlignment.MiddleCenter }, 0, tableLayoutPanel1.RowCount - 1);
+                this.tableLayoutPanel1.Controls.Add(new Label() { Text = demographic.Value.ToString(), TextAlign = ContentAlignment.MiddleCenter }, 1, tableLayoutPanel1.RowCount - 1);
+            
+            }
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)

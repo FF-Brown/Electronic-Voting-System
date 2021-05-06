@@ -28,6 +28,15 @@ namespace Electronic_Voting_System
             user.setIsRegistered(true);
         }
 
+        /// <summary>
+        /// Method that returns the election status
+        /// </summary>
+        /// <returns>election status as a bool</returns>
+        public bool GetElectionStatus()
+        {
+            return election.is_active;
+        }
+
         public void DisplayAdminPortal()
         {
             throw new NotImplementedException();
@@ -105,9 +114,9 @@ namespace Electronic_Voting_System
                                                                                 {"OK",0},{"OR",0},{"PA",0},{"RI",0},{"SC",0},
                                                                                 {"SD",0},{"TN",0},{"TX",0},{"UT",0},{"VT",0},
                                                                                 {"VA",0},{"WA",0},{"WV",0},{"WI",0},{"WY",0}};
-            foreach (User user in this.users.Values)
+            foreach (var user in this.users)
             {
-                demographics[user.getUserProfile().getState()]++;
+                demographics[user.Value.getUserProfile().getState()]++;
             }
 
             return demographics;
@@ -116,6 +125,11 @@ namespace Electronic_Voting_System
         public User GetCurrentUser()
         {
             return this.currentUser;
+        }
+
+        public void SetCurrentUser(User user)
+        {
+            this.currentUser = user;
         }
 
         public List<Candidate> GetCandidates()

@@ -31,3 +31,4 @@ C:\Users\dawso\Documents\CptS 322 Final Project\EVS Project\Electronic-Voting-Sy
 C:\Users\dawso\Documents\CptS 322 Final Project\EVS Project\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\obj\Debug\Electronic_Voting_System.LoginForm.resources
 C:\Users\dawso\Documents\CptS 322 Final Project\EVS Project\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\obj\Debug\Electronic_Voting_System.RegisterForm.resources
 C:\Users\dawso\Documents\CptS 322 Final Project\EVS Project\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\obj\Debug\Electronic_Voting_System.Form1.resources
+C:\Users\dawso\Documents\CptS 322 Final Project\EVS Project\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\obj\Debug\Electronic_Voting_System.AdminForm.resources
