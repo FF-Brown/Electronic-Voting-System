@@ -14,6 +14,8 @@ namespace Electronic_Voting_System
     {
         private ElectionManagementSystem EMS;
         private bool loginResult;
+        private bool currentAdmin;
+        User currentUser;
 
         public Form1()
         {
@@ -21,6 +23,7 @@ namespace Electronic_Voting_System
             EMS = new ElectionManagementSystem();
             this.Text = "Electronic Voting System";
             this.loginResult = false;
+            this.currentAdmin = false;
         }
 
         /// <summary>
@@ -44,12 +47,12 @@ namespace Electronic_Voting_System
                     if(EMS.Login(username, password) == true)
                     {
                         // username & password matches a user
-                        // Show voting menu
+                        // Set current user
+                        currentUser = EMS.GetUserList()[username];
                         this.loginResult = true;
-                        using (var votingForm = new VotingForm())
-                        {
-                            //var result
-                        }
+                        EMS.SetCurrentUser(currentUser);
+                        label2.Text = "Hi, " + username;
+
                     } /*
                     else if (EMS.AdminLogin(username, password))
                     {
@@ -128,6 +131,29 @@ namespace Electronic_Voting_System
 
                     }
                 }
+            }
+        }
+
+        private void adminPortalButton_Click(object sender, EventArgs e)
+        {
+            this.currentAdmin = true; // REMOVE THIS AFTER
+            if (this.currentAdmin)
+            {
+                using (var form = new AdminForm(EMS))
+                {
+                    var result = form.ShowDialog();
+                }
+            }
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            loginResult = true;
+            if (this.loginResult)
+            {
+                // If there is a user logged in, log them out
+                loginResult = false;
+                label2.Text = "Goodbye!";
             }
         }
     }
