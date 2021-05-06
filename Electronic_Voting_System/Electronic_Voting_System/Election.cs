@@ -96,8 +96,12 @@ namespace Electronic_Voting_System
             {
                 this.stopElection();
             }
+
+            // Convert current date to DateTime.
+            DateTime currentDate = DateTime.Parse(current_date);
+
             // check if the deadline has arrived
-            if (current_date == this.end_date)
+            if (DateTime.Compare(currentDate, this.end_date) >= 0)
             {
                 this.stopElection();
             }

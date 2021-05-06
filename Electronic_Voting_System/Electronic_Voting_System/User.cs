@@ -28,7 +28,7 @@ namespace Electronic_Voting_System
 			isRegistered = false;
 			hasVoted = false;
 			isAdmin = false;
-			Candidate votedCandidate = new Candidate();
+			votedCandidate = new Candidate();
 		}
 
 		public User(Profile profile)
@@ -37,7 +37,7 @@ namespace Electronic_Voting_System
 			isRegistered = false;
 			hasVoted = false;
 			isAdmin = false;
-			Candidate votedCandidate = new Candidate();
+			votedCandidate = new Candidate();
 		}
 
 		/******** Getters ********/
@@ -69,7 +69,7 @@ namespace Electronic_Voting_System
 		public void setIsRegistered(bool b) { isRegistered = b; }
 
 		// set the candidate the user voted for
-		public void setVotedCandidate (Candidate c) { Candidate c; }
+		public void setVotedCandidate (Candidate c) { votedCandidate = c; }
 
 		// set the user's profile to a new profile
 		public void setProfile (Profile p) { userProfile = p; }

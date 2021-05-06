@@ -17,3 +17,4 @@ C:\Users\dawso\Documents\CptS 322 Final Project\Electronic-Voting-System\Electro
 C:\Users\dawso\Documents\CptS 322 Final Project\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\bin\Debug\Electronic_Voting_System.exe
 C:\Users\dawso\Documents\CptS 322 Final Project\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\bin\Debug\Electronic_Voting_System.pdb
 C:\Users\dawso\Documents\CptS 322 Final Project\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\obj\Debug\Electronic_Voting_System.ElectionInfoForm.resources
+C:\Users\Nathan\Documents\Electronic-Voting-System\Electronic_Voting_System\Electronic_Voting_System\obj\Debug\Electronic_Voting_System.ElectionInfoForm.resources
