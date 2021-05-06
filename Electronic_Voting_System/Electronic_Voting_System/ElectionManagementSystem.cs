@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Xml;
 
 namespace Electronic_Voting_System
 {
@@ -255,6 +254,142 @@ namespace Electronic_Voting_System
                 + "-" + dt.Month
                 + "-" + dt.Day;
             return output;
+        }
+
+        /// <summary>
+        /// Should be called automatically before program closes.
+        /// Writes election data to electionOutFile and userList to userOutFile.
+        /// Returns true if successful.
+        /// </summary>
+        public bool saveToFile(Stream electionOutFile, Stream userOutFile)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Should be called automatically when the program runs.
+        /// </summary>
+        public bool loadFromFile(Stream electionInFile, Stream userInFile)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool ElectionToXML(Election election, out XmlElement xml)
+        {
+            // Create temporary XmlDoc to create Element and Attribute objects.
+            XmlDocument doc = new XmlDocument();
+            xml = doc.CreateElement("shape");
+
+            // Create and assign startDate element.
+            XmlElement startDateElement = doc.CreateElement("startDate");
+            startDateElement.InnerText = election.start_date.Date.ToString();
+            xml.AppendChild(startDateElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                startDateElement.OuterXml,
+                "\n    " + startDateElement.OuterXml + " \n    ");
+
+            // Create and assign endDate element.
+            XmlElement endDateElement = doc.CreateElement("endDate");
+            endDateElement.InnerText = election.start_date.Date.ToString();
+            xml.AppendChild(endDateElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                endDateElement.OuterXml,
+                "\n    " + endDateElement.OuterXml + " \n    ");
+
+            // Create and assign winPercentage element.
+            XmlElement winPercentageElement = doc.CreateElement("winPercentage");
+            winPercentageElement.InnerText = election.min_win_percentage.ToString();
+            xml.AppendChild(winPercentageElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                winPercentageElement.OuterXml,
+                "\n    " + winPercentageElement.OuterXml + " \n    ");
+
+            // Create and assign active element.
+            XmlElement activeElement = doc.CreateElement("active");
+            activeElement.InnerText = election.is_active.ToString();
+            xml.AppendChild(activeElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                activeElement.OuterXml,
+                "\n    " + activeElement.OuterXml + " \n    ");
+
+            // Create and assign candidate elements. 
+            // MAY BE A PROBLEM. If it doesn't work, try just copying the body of the CandidateToXML() function into this loop.
+            foreach (Candidate candidate in election.GetCandidates())
+            {
+                if (this.CandidateToXML(candidate, out XmlElement candidateElement))
+                {
+                    xml.AppendChild(candidateElement);
+                }
+            }
+
+            return true;
+        }
+
+        internal bool XMLToElection(out Election election, XmlNode xml)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool CandidateToXML(Candidate candidate, out XmlElement xml)
+        {
+            // Create temporary XmlDoc to create Element and Attribute objects.
+            XmlDocument doc = new XmlDocument();
+            xml = doc.CreateElement("candidate");
+
+            // Create and assign name element.
+            XmlElement nameElement = doc.CreateElement("name");
+            nameElement.InnerText = candidate.name;
+            xml.AppendChild(nameElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                nameElement.OuterXml,
+                "\n    " + nameElement.OuterXml + " \n    ");
+
+            // Create and assign party element.
+            XmlElement partyElement = doc.CreateElement("party");
+            partyElement.InnerText = candidate.party;
+            xml.AppendChild(partyElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                partyElement.OuterXml,
+                "\n    " + partyElement.OuterXml + " \n    ");
+
+            // Create and assign votes element.
+            XmlElement votesElement = doc.CreateElement("votes");
+            votesElement.InnerText = candidate.total_votes.ToString();
+            xml.AppendChild(votesElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                votesElement.OuterXml,
+                votesElement.OuterXml + " \n    ");
+
+            return true;
+        }
+
+        internal bool XMLToCandidate(out Candidate candidate, XmlNode xml)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool UserToXML(User user, out XmlElement xml)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool XMLToUser(out User user, XmlNode xml)
+        {
+            throw new NotImplementedException();
         }
     }
 }
