@@ -8,9 +8,9 @@ namespace Electronic_Voting_System
 {
     public class Profile
     {
-        // Name, Address, Email, Password, Date of Birth, Social Security Number
+        // Name, state, Email, Password, Date of Birth, Social Security Number
 		// private variables
-		private string name, username, address, email, pw, dob;
+		private string name, username, state, email, pw, dob;
 
 		private int ssn;
 
