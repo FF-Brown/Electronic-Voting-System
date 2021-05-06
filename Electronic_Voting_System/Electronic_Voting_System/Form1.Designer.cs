@@ -33,6 +33,7 @@ namespace Electronic_Voting_System
             this.registerButton = new System.Windows.Forms.Button();
             this.electionInfoButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.VoteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // loginButton
@@ -44,9 +45,9 @@ namespace Electronic_Voting_System
             this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.loginButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.loginButton.Location = new System.Drawing.Point(52, 79);
+            this.loginButton.Location = new System.Drawing.Point(608, 80);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(158, 90);
+            this.loginButton.Size = new System.Drawing.Size(142, 57);
             this.loginButton.TabIndex = 0;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = false;
@@ -60,9 +61,9 @@ namespace Electronic_Voting_System
             this.registerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.registerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.registerButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.registerButton.Location = new System.Drawing.Point(52, 192);
+            this.registerButton.Location = new System.Drawing.Point(608, 159);
             this.registerButton.Name = "registerButton";
-            this.registerButton.Size = new System.Drawing.Size(158, 88);
+            this.registerButton.Size = new System.Drawing.Size(142, 61);
             this.registerButton.TabIndex = 1;
             this.registerButton.Text = "Register";
             this.registerButton.UseVisualStyleBackColor = false;
@@ -76,9 +77,9 @@ namespace Electronic_Voting_System
             this.electionInfoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.electionInfoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.electionInfoButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.electionInfoButton.Location = new System.Drawing.Point(52, 311);
+            this.electionInfoButton.Location = new System.Drawing.Point(608, 265);
             this.electionInfoButton.Name = "electionInfoButton";
-            this.electionInfoButton.Size = new System.Drawing.Size(158, 111);
+            this.electionInfoButton.Size = new System.Drawing.Size(142, 111);
             this.electionInfoButton.TabIndex = 2;
             this.electionInfoButton.Text = "Election Info";
             this.electionInfoButton.UseVisualStyleBackColor = false;
@@ -94,12 +95,24 @@ namespace Electronic_Voting_System
             this.label1.TabIndex = 3;
             this.label1.Text = "EMS Menu";
             // 
+            // VoteButton
+            // 
+            this.VoteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.VoteButton.Location = new System.Drawing.Point(64, 289);
+            this.VoteButton.Name = "VoteButton";
+            this.VoteButton.Size = new System.Drawing.Size(149, 87);
+            this.VoteButton.TabIndex = 4;
+            this.VoteButton.Text = "Vote";
+            this.VoteButton.UseVisualStyleBackColor = true;
+            this.VoteButton.Click += new System.EventHandler(this.VoteButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.VoteButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.electionInfoButton);
             this.Controls.Add(this.registerButton);
@@ -117,6 +130,7 @@ namespace Electronic_Voting_System
         private System.Windows.Forms.Button registerButton;
         private System.Windows.Forms.Button electionInfoButton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button VoteButton;
     }
 }
 
