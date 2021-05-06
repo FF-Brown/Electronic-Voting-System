@@ -17,7 +17,8 @@ namespace Electronic_Voting_System
 		// Constructor 
 		public Profile()
 		{ 
-			name = "";		// Name
+			name = "";      // Name
+			username = "";
 			address = ""; 	// Address
 			email = "";		// Email
 			pw = "";		// Password
