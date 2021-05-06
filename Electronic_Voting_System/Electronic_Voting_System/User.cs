@@ -19,7 +19,7 @@ namespace Electronic_Voting_System
 		// Is the user an administrator?
 		bool isAdmin;
 		// the candidate the user voted for
-		Candidate votedCandidate; 
+		Candidate votedCandidate;
 
 		// Constructor
 		public User()
@@ -28,25 +28,25 @@ namespace Electronic_Voting_System
 			isRegistered = false;
 			hasVoted = false;
 			isAdmin = false;
-			Candidate votedCandidate = new Candidate();
+			votedCandidate = null;
 		}
 
-		/******** Getters ********/ 
+		/******** Getters ********/
 
 		// return whether the user is an administrator
-		public bool getIsAdmin(void)				{ return isAdmin; }
+		public bool getIsAdmin()				{ return isAdmin; }
 
 		// return whether the user has voted
-		public bool getHasVoted(void)				{ return hasVoted;}
+		public bool getHasVoted()				{ return hasVoted;}
 
 		// return whether the user is registered 
-		public bool getIsRegistered(void)			{ return isRegistered; }
+		public bool getIsRegistered()			{ return isRegistered; }
 
 		// return the Candidate the user voted for
-		public Candidate getVotedCandidate(void)	{ return votedCandidate; }
+		public Candidate getVotedCandidate()	{ return votedCandidate; }
 
 		// return the user's profile
-		public Profile getUserProfile(void)			{ return userProfile; }
+		public Profile getUserProfile()			{ return userProfile; }
 
 		/******** Setters ********/ 
 
@@ -60,7 +60,7 @@ namespace Electronic_Voting_System
 		public void setIsRegistered(bool b) { isRegistered = b; }
 
 		// set the candidate the user voted for
-		public void setVotedCandidate (Candidate c) { Candidate c; }
+		public void setVotedCandidate (Candidate c) { votedCandidate = c; }
 
 		// set the user's profile to a new profile
 		public void setProfile (Profile p) { userProfile = p; }
