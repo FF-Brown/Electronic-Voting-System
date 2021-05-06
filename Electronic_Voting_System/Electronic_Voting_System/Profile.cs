@@ -19,18 +19,18 @@ namespace Electronic_Voting_System
 		{ 
 			name = "";      // Name
 			username = "";
-			address = ""; 	// Address
+			state = ""; 	// State
 			email = "";		// Email
 			pw = "";		// Password
 			dob = "";		// Date of Birth
 			ssn = 0;		// Social Security Number
 		}
 
-		public Profile(string name, string username, string address, string email, string password, string birthdate, int SSN)
+		public Profile(string name, string username, string state, string email, string password, string birthdate, int SSN)
         {
 			this.name = name;
 			this.username = username;
-			this.address = address;
+			this.state = state;
 			this.email = email;
 			this.pw = password;
 			this.dob = birthdate;
@@ -40,7 +40,7 @@ namespace Electronic_Voting_System
 		// Getters
 		public string getName()		{	return name;	}
 		public string getUsername() { return username; }
-		public string getAddress()	{	return address;	}
+		public string getState()	{	return state;	}
 		public string getEmail()	{	return email;	}
 		public string getPW()		{	return pw;		}
 		public string getDOB()		{	return dob;		}
@@ -48,7 +48,7 @@ namespace Electronic_Voting_System
 
 		// Setters
 		public void setName(string n )			{	name = n;		}
-		public void setAddress(string a)		{	address = a;	}
+		public void setState(string s)		{	state = s;	}
 		public void setEmail(string e)			{	email = e;		}
 		public void setPW(string p)				{	pw = p;			}
 		public void setDOB(string d)			{	dob = d;		}
