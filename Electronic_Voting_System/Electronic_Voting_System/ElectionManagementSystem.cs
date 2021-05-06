@@ -433,6 +433,16 @@ namespace Electronic_Voting_System
                 addressElement.OuterXml,
                 "\n    " + addressElement.OuterXml + " \n    ");
 
+            // Create and assign email element.
+            XmlElement emailElement = doc.CreateElement("email");
+            addressElement.InnerText = user.getUserProfile().getEmail();
+            xml.AppendChild(emailElement);
+
+            // Append newline.
+            xml.InnerXml = xml.InnerXml.Replace(
+                emailElement.OuterXml,
+                "\n    " + emailElement.OuterXml + " \n    ");
+
             // Create and assign PASSWORD element.
             XmlElement passwordElement = doc.CreateElement("pw");
             passwordElement.InnerText = user.getUserProfile().getPW();
@@ -466,9 +476,25 @@ namespace Electronic_Voting_System
             return true;
         }
 
+        /// <summary>
+        /// Converts a single XMLNode to a user profile and returns user.
+        /// </summary>
+        /// <param name="user">User profile.</param>
+        /// <param name="xml">XML childnode?</param>
+        /// <returns>New User profile.</returns>
         internal bool XMLToUser(out User user, XmlNode xml)
         {
-            throw new NotImplementedException();
+            user = new User();
+
+            user.getUserProfile().setName(xml.Attributes["name"].Value); // Set Name
+            user.getUserProfile().setUsername(xml.Attributes["username"].Value); // Set Username
+            user.getUserProfile().setState(xml.Attributes["address"].Value); // Set address
+            user.getUserProfile().setEmail(xml.Attributes["email"].Value); // Set email
+            user.getUserProfile().setPW(xml.Attributes["pw"].Value); // Set password
+            user.getUserProfile().setDOB(xml.Attributes["dob"].Value); // Set DOB
+            user.getUserProfile().setSSN(Convert.ToInt32(xml.Attributes["ssn"].Value)); // Set SSN
+
+            return true;
         }
     }
 }
