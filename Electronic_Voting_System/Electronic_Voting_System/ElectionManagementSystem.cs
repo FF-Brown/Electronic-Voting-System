@@ -276,9 +276,94 @@ namespace Electronic_Voting_System
         /// Writes election data to electionOutFile and userList to userOutFile.
         /// Returns true if successful.
         /// </summary>
-        public bool saveToFile(Stream electionOutFile, Stream userOutFile)
+        public int saveToFile(Stream electionOutFile, Stream userOutFile)
         {
-            throw new NotImplementedException();
+            bool result;
+
+            if (electionOutFile != null)
+            {
+                XmlDocument doc = new XmlDocument();
+
+                // Modify write settings.
+                XmlWriterSettings settings = new XmlWriterSettings
+                {
+                    NewLineChars = "\n",
+                    Indent = true,
+                    IndentChars = "\t",
+                    NewLineOnAttributes = true,
+                    OmitXmlDeclaration = false,
+                };
+                XmlWriter writer = XmlWriter.Create(electionOutFile, settings);
+
+                doc.LoadXml("<EMS>" + "</EMS>");
+
+                // Create cell element and root node.
+                XmlNode root = doc["EMS"];
+                XmlElement userElement = doc.CreateElement("election");
+                XmlNode importNode = null;
+
+                // Create Xml element from cell.
+                result = this.ElectionToXML(election, out userElement);
+
+                // True if cell was not empty.
+                if (result)
+                {
+                    // Append shape to record and format it nicely.
+                    importNode = doc.ImportNode(userElement, true);
+                    root.AppendChild(importNode);
+                }
+
+                // Save Xml Doc.
+                doc.Save(writer);
+                writer.Close();
+            }
+
+            int usersSaved = 0;
+
+            if (userOutFile != null)
+            {
+                XmlDocument doc = new XmlDocument();
+
+                // Modify write settings.
+                XmlWriterSettings settings = new XmlWriterSettings
+                {
+                    NewLineChars = "\n",
+                    Indent = true,
+                    IndentChars = "\t",
+                    NewLineOnAttributes = true,
+                    OmitXmlDeclaration = false,
+                };
+                XmlWriter writer = XmlWriter.Create(userOutFile, settings);
+
+                doc.LoadXml("<userList>" + "</userList>");
+
+                // Create cell element and root node.
+                XmlNode root = doc["userList"];
+                XmlElement userElement = doc.CreateElement("user");
+                XmlNode importNode = null;
+
+                foreach (User user in this.users.Values)
+                {
+                    // Create Xml element from cell.
+                    result = this.UserToXML(user, out userElement);
+
+                    // True if cell was not empty.
+                    if (result)
+                    {
+                        usersSaved++;
+
+                        // Append shape to record and format it nicely.
+                        importNode = doc.ImportNode(userElement, true);
+                        root.AppendChild(importNode);
+                    }
+                }
+
+                // Save Xml Doc.
+                doc.Save(writer);
+                writer.Close();
+            }
+
+            return usersSaved;
         }
 
         /// <summary>
