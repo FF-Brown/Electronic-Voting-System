@@ -45,9 +45,8 @@ namespace Electronic_Voting_System
                 candidateString = listBox1.Items[index].ToString();
                 candidateStringSplit = candidateString.Split(':');
                 candidateName = candidateStringSplit[0];
+                EMS.Vote(candidateName); // IMPLEMENT THIS
             }
-
-            EMS.Vote(); // IMPLEMENT THIS
         }
     }
 }
