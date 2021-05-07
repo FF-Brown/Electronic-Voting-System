@@ -24,6 +24,17 @@ namespace Electronic_Voting_System
             this.Text = "Electronic Voting System";
             this.loginResult = false;
             this.currentAdmin = false;
+            EMS.LoadXML();
+        }
+
+        /// <summary>
+        /// Method that saves the election data when the form is closed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            EMS.SaveXML();
         }
 
         /// <summary>
@@ -53,13 +64,13 @@ namespace Electronic_Voting_System
                         EMS.SetCurrentUser(currentUser);
                         label2.Text = "Hi, " + username;
 
-                    } /*
-                    else if (EMS.AdminLogin(username, password))
-                    {
-                        // username & password matches the admin
-                        // Show admin menu
+                        if(EMS.UserIsAdmin())
+                        {
+                            // if the current user is the admin
+                            adminPortalButton.Visible = true;
+                        }
 
-                    } */
+                    }
                     else
                     {
                         // No credentials match a user or admin
@@ -81,7 +92,8 @@ namespace Electronic_Voting_System
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    string username = form.Name;
+                    string username = form.Username;
+                    string name = form.Name;
                     string password = form.Password;
                     string email = form.Email;
                     string address = form.Address;
@@ -91,7 +103,7 @@ namespace Electronic_Voting_System
                         int SSN = Convert.ToInt32(form.SSN);
 
                         // Put the user on the pending verification list
-                        EMS.Register(username, password, email, birthdate, SSN, username, address);
+                        EMS.Register(username, password, email, birthdate, SSN, name, address);
 
                         // Display confirmation and close the register form
                         form.Close();
@@ -117,13 +129,13 @@ namespace Electronic_Voting_System
 
         private void VoteButton_Click(object sender, EventArgs e)
         {
-            this.loginResult = true; // remove this after implementation
+            //this.loginResult = true; // REMOVE THIS 
             if(this.loginResult == true)
             {
                 // if a valid user is logged in
                 // Show the voting menu
 
-                using (var form = new VotingForm())
+                using (var form = new VotingForm(EMS))
                 {
                     var result = form.ShowDialog();
                     if(result == DialogResult.OK)

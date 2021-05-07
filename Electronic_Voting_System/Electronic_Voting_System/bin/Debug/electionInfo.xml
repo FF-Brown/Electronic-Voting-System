@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EMS>
+	<election>
+    <startDate>5/7/2021 12:00:00 AM</startDate> 
+    
+    <endDate>5/7/2021 12:00:00 AM</endDate> 
+    
+    <winPercentage>50</winPercentage> 
+    
+    <active>False</active> 
+    </election>
+</EMS>
