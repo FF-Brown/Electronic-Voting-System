@@ -304,8 +304,8 @@ namespace Electronic_Voting_System
 
         public void SaveXML()
         {
-            FileStream electionOutFile = File.OpenWrite("electionInfo.xml");
-            FileStream userOutFile = File.OpenWrite("userInfo.xml");
+            FileStream electionOutFile = File.OpenWrite(".\\Trash\\electionInfo.xml");
+            FileStream userOutFile = File.OpenWrite(".\\Trash\\userInfo.xml");
             if (electionOutFile != null && userOutFile != null)
             {
                 this.saveToFile(electionOutFile, userOutFile);
