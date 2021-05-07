@@ -13,6 +13,12 @@
     
     <party>Fiesta</party> 
     <votes>0</votes> 
+    </candidate>
+	<candidate>
+    <name>Harriet Tubbman</name> 
+    
+    <party>Fiesta</party> 
+    <votes>0</votes> 
     </candidate><candidate>
     <name>Henry Joe</name> 
     
