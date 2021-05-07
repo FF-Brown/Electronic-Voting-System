@@ -40,6 +40,24 @@
     <hasVoted>False</hasVoted> 
     <isRegistered>False</isRegistered> 
     </user>
-</userList></isRegistered> 
+	<user>
+    <name>Koji</name> 
+    
+    <username>thekojiman</username> 
+    
+    <address>OR</address> 
+    
+    <email>koji@koji</email> 
+    
+    <pw>koji</pw> 
+    
+    <dob>05/01/2021</dob> 
+    
+    <ssn>123456789</ssn> 
+    
+    <isAdmin>False</isAdmin> 
+    
+    <hasVoted>False</hasVoted> 
+    <isRegistered>True</isRegistered> 
     </user>
 </userList>
