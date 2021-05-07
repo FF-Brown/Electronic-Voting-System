@@ -151,7 +151,7 @@ namespace Electronic_Voting_System
             this.currentAdmin = true; // REMOVE THIS AFTER
             if (this.currentAdmin)
             {
-                using (var form = new AdminForm(EMS))
+                using (var form = new AdminForm(ref EMS))
                 {
                     var result = form.ShowDialog();
                 }

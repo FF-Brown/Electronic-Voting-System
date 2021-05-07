@@ -26,6 +26,7 @@ namespace Electronic_Voting_System
         public void AuthenticateUser(User user)
         {
             user.setIsRegistered(true);
+            pendingValidations.Remove(user.getUserProfile().getUsername()); // Remove "registered" user profile off of validationslist
         }
 
         /// <summary>

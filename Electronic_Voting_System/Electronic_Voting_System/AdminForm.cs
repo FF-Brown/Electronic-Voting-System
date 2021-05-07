@@ -15,7 +15,7 @@ namespace Electronic_Voting_System
         private ElectionManagementSystem EMS;
         Dictionary<string, User> validationList;
 
-        public AdminForm(ElectionManagementSystem EMS)
+        public AdminForm(ref ElectionManagementSystem EMS)
         {
             InitializeComponent();
             this.EMS = EMS;
@@ -65,6 +65,7 @@ namespace Electronic_Voting_System
                 // Validate the user at that index
                 string username = listBox1.Items[index].ToString();
                 EMS.AuthenticateUser(validationList[username]);
+                listBox1.Items.RemoveAt(index);
             }
         }
     }
