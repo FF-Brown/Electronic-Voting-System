@@ -93,9 +93,25 @@ namespace Electronic_Voting_System
             return this.pendingValidations;
         }
 
-        public void Vote()
+        public void Vote(string candidate)
         {
-            throw new NotImplementedException();
+            // User must be logged in.
+            if (currentUser != null)
+            {
+                // User must be registered (accepted by admin).
+                if (currentUser.getIsRegistered())
+                {
+                    // Get Candidate object from election.
+                    if (this.election.GetCandidate(candidate, out Candidate votedCandidate))
+                    {
+                        // Set user Voted Candidate.
+                        this.currentUser.setVotedCandidate(votedCandidate);
+
+                        // Add a vote to that candidate.
+                        this.election.addVote(candidate);
+                    }
+                }
+            }
         }
 
         /// <summary>

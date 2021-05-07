@@ -124,5 +124,20 @@ namespace Electronic_Voting_System
 
             return false;
         }
+
+        public bool GetCandidate(string candidateName, out Candidate candidate)
+        {
+            foreach (Candidate current in candidate_list)
+            {
+                if (current.name == candidateName)
+                {
+                    candidate = current;
+                    return true;
+                }
+            }
+
+            candidate = null;
+            return false;
+        }
     }
 }
