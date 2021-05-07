@@ -12,9 +12,42 @@ namespace Electronic_Voting_System
 {
     public partial class VotingForm : Form
     {
-        public VotingForm()
+        private ElectionManagementSystem EMS;
+        public VotingForm(ElectionManagementSystem EMS)
         {
             InitializeComponent();
+            this.EMS = EMS;
+
+            // First fill out the candidate list
+            List<Candidate> candidateList = EMS.GetCandidates();
+            foreach (var candidate in candidateList)
+            {
+                listBox1.Items.Add(candidate.name + ": " + candidate.total_votes);
+            }
+        }
+
+        /// <summary>
+        /// Voting button method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Voting button clicked
+            int index = listBox1.SelectedIndex;
+            string candidateString;
+            string[] candidateStringSplit;
+            string candidateName;
+            if(index != -1)
+            {
+                // if an index on the candidate list is selected
+                // Get the candidate
+                candidateString = listBox1.Items[index].ToString();
+                candidateStringSplit = candidateString.Split(':');
+                candidateName = candidateStringSplit[0];
+            }
+
+            EMS.Vote(); // IMPLEMENT THIS
         }
     }
 }

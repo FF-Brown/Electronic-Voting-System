@@ -38,6 +38,8 @@ namespace Electronic_Voting_System
             this.logoutButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(Form1_FormClosing);
+            
             // 
             // loginButton
             // 

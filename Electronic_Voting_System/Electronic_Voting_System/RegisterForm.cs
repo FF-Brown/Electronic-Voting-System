@@ -13,6 +13,7 @@ namespace Electronic_Voting_System
     public partial class RegisterForm : Form
     {
         public string Name { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
@@ -57,6 +58,11 @@ namespace Electronic_Voting_System
         private void SSNBox_TextChanged(object sender, EventArgs e)
         {
             this.SSN = this.SSNBox.Text;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            this.Username = this.textBox1.Text;
         }
     }
 }

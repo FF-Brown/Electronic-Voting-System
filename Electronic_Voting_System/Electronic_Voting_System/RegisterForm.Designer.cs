@@ -42,11 +42,13 @@ namespace Electronic_Voting_System
             this.BirthdateLabel = new System.Windows.Forms.Label();
             this.SSNLabel = new System.Windows.Forms.Label();
             this.RegButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // NameBox
             // 
-            this.NameBox.Location = new System.Drawing.Point(321, 66);
+            this.NameBox.Location = new System.Drawing.Point(321, 52);
             this.NameBox.Name = "NameBox";
             this.NameBox.Size = new System.Drawing.Size(225, 22);
             this.NameBox.TabIndex = 0;
@@ -54,7 +56,7 @@ namespace Electronic_Voting_System
             // 
             // PasswordBox
             // 
-            this.PasswordBox.Location = new System.Drawing.Point(321, 139);
+            this.PasswordBox.Location = new System.Drawing.Point(321, 177);
             this.PasswordBox.Name = "PasswordBox";
             this.PasswordBox.Size = new System.Drawing.Size(225, 22);
             this.PasswordBox.TabIndex = 1;
@@ -62,7 +64,7 @@ namespace Electronic_Voting_System
             // 
             // EmailBox
             // 
-            this.EmailBox.Location = new System.Drawing.Point(321, 205);
+            this.EmailBox.Location = new System.Drawing.Point(321, 245);
             this.EmailBox.Name = "EmailBox";
             this.EmailBox.Size = new System.Drawing.Size(225, 22);
             this.EmailBox.TabIndex = 2;
@@ -70,7 +72,7 @@ namespace Electronic_Voting_System
             // 
             // AddressBox
             // 
-            this.AddressBox.Location = new System.Drawing.Point(321, 285);
+            this.AddressBox.Location = new System.Drawing.Point(321, 315);
             this.AddressBox.Name = "AddressBox";
             this.AddressBox.Size = new System.Drawing.Size(225, 22);
             this.AddressBox.TabIndex = 3;
@@ -78,7 +80,7 @@ namespace Electronic_Voting_System
             // 
             // BirthdateBox
             // 
-            this.BirthdateBox.Location = new System.Drawing.Point(321, 365);
+            this.BirthdateBox.Location = new System.Drawing.Point(321, 383);
             this.BirthdateBox.Name = "BirthdateBox";
             this.BirthdateBox.Size = new System.Drawing.Size(225, 22);
             this.BirthdateBox.TabIndex = 4;
@@ -95,7 +97,7 @@ namespace Electronic_Voting_System
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(171, 66);
+            this.NameLabel.Location = new System.Drawing.Point(174, 52);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(45, 17);
             this.NameLabel.TabIndex = 6;
@@ -104,7 +106,7 @@ namespace Electronic_Voting_System
             // AddressLabel
             // 
             this.AddressLabel.AutoSize = true;
-            this.AddressLabel.Location = new System.Drawing.Point(162, 285);
+            this.AddressLabel.Location = new System.Drawing.Point(171, 315);
             this.AddressLabel.Name = "AddressLabel";
             this.AddressLabel.Size = new System.Drawing.Size(60, 17);
             this.AddressLabel.TabIndex = 7;
@@ -113,7 +115,7 @@ namespace Electronic_Voting_System
             // EmailLabel
             // 
             this.EmailLabel.AutoSize = true;
-            this.EmailLabel.Location = new System.Drawing.Point(174, 209);
+            this.EmailLabel.Location = new System.Drawing.Point(171, 245);
             this.EmailLabel.Name = "EmailLabel";
             this.EmailLabel.Size = new System.Drawing.Size(42, 17);
             this.EmailLabel.TabIndex = 8;
@@ -122,7 +124,7 @@ namespace Electronic_Voting_System
             // PasswordLabel
             // 
             this.PasswordLabel.AutoSize = true;
-            this.PasswordLabel.Location = new System.Drawing.Point(162, 139);
+            this.PasswordLabel.Location = new System.Drawing.Point(171, 180);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(69, 17);
             this.PasswordLabel.TabIndex = 9;
@@ -131,7 +133,7 @@ namespace Electronic_Voting_System
             // BirthdateLabel
             // 
             this.BirthdateLabel.AutoSize = true;
-            this.BirthdateLabel.Location = new System.Drawing.Point(162, 368);
+            this.BirthdateLabel.Location = new System.Drawing.Point(171, 383);
             this.BirthdateLabel.Name = "BirthdateLabel";
             this.BirthdateLabel.Size = new System.Drawing.Size(65, 17);
             this.BirthdateLabel.TabIndex = 10;
@@ -140,7 +142,7 @@ namespace Electronic_Voting_System
             // SSNLabel
             // 
             this.SSNLabel.AutoSize = true;
-            this.SSNLabel.Location = new System.Drawing.Point(174, 447);
+            this.SSNLabel.Location = new System.Drawing.Point(171, 446);
             this.SSNLabel.Name = "SSNLabel";
             this.SSNLabel.Size = new System.Drawing.Size(36, 17);
             this.SSNLabel.TabIndex = 11;
@@ -156,11 +158,30 @@ namespace Electronic_Voting_System
             this.RegButton.UseVisualStyleBackColor = true;
             this.RegButton.Click += new System.EventHandler(this.RegButton_Click_1);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(171, 118);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 17);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Username";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(321, 118);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(225, 22);
+            this.textBox1.TabIndex = 14;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(672, 674);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.RegButton);
             this.Controls.Add(this.SSNLabel);
             this.Controls.Add(this.BirthdateLabel);
@@ -197,5 +218,7 @@ namespace Electronic_Voting_System
         private System.Windows.Forms.Label BirthdateLabel;
         private System.Windows.Forms.Label SSNLabel;
         private System.Windows.Forms.Button RegButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
