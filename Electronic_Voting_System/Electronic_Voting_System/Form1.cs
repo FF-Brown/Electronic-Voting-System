@@ -135,7 +135,7 @@ namespace Electronic_Voting_System
                 // if a valid user is logged in
                 // Show the voting menu
 
-                using (var form = new VotingForm(EMS))
+                using (var form = new VotingForm(EMS, currentUser))
                 {
                     var result = form.ShowDialog();
                     if(result == DialogResult.OK)
