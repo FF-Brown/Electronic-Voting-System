@@ -3,7 +3,7 @@
 	<user>
     <name>Frank</name> 
     
-    <username>leUsername</username> 
+    <username>admin</username> 
     
     <address>WA</address> 
     
@@ -15,7 +15,7 @@
     
     <ssn>123456789</ssn> 
     
-    <isAdmin>False</isAdmin> 
+    <isAdmin>True</isAdmin> 
     
     <hasVoted>False</hasVoted> 
     <isRegistered>False</isRegistered> 
@@ -39,7 +39,5 @@
     
     <hasVoted>False</hasVoted> 
     <isRegistered>False</isRegistered> 
-    </user>
-</userList></isRegistered> 
     </user>
 </userList>
