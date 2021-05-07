@@ -3,13 +3,13 @@
 	<user>
     <name>Frank</name> 
     
-    <username>leUsername</username> 
+    <username>admin</username> 
     
     <address>WA</address> 
     
     <email>daEmail</email> 
     
-    <pw>contrasena</pw> 
+    <pw>password</pw> 
     
     <dob>05/24/1970</dob> 
     
