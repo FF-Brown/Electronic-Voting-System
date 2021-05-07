@@ -414,7 +414,14 @@ namespace Electronic_Voting_System
             // Begin loading Xml document.
             if (electionInFile != null)
             {
-                electionDoc.Load(electionInFile);
+                try
+                {
+                    electionDoc.Load(electionInFile);
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
                 if (electionDoc.HasChildNodes)
                 {
                     XmlNode root;
@@ -443,7 +450,14 @@ namespace Electronic_Voting_System
             // Begin loading Xml document.
             if (userInFile != null)
             {
-                userDoc.Load(userInFile);
+                try
+                {
+                    userDoc.Load(userInFile);
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
                 if (userDoc.HasChildNodes)
                 {
                     XmlNode userRoot;
@@ -467,12 +481,12 @@ namespace Electronic_Voting_System
 
                         if (newUser.getIsRegistered())
                         {
-                            this.users.Add(newUser.getUserProfile().getName(), newUser); // Add user to user if they are registered
+                            this.users.Add(newUser.getUserProfile().getUsername(), newUser); // Add user to user if they are registered
                         }
                         else
                         {
-                            this.users.Add(newUser.getUserProfile().getName(), newUser);
-                            this.pendingValidations.Add(newUser.getUserProfile().getName(), newUser); // Add user to pendingValidations if they are not yet registered
+                            this.users.Add(newUser.getUserProfile().getUsername(), newUser);
+                            this.pendingValidations.Add(newUser.getUserProfile().getUsername(), newUser); // Add user to pendingValidations if they are not yet registered
                         }
                     }
                 }

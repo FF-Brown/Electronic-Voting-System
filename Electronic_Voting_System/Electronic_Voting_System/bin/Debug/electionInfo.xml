@@ -1,12 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EMS>
 	<election>
-    <startDate>5/7/2021 12:00:00 AM</startDate> 
+    <startDate>5/8/2021 12:00:00 AM</startDate> 
     
-    <endDate>5/7/2021 12:00:00 AM</endDate> 
+    <endDate>5/10/2021 12:00:00 AM</endDate> 
     
-    <winPercentage>50</winPercentage> 
+    <winPercentage>75</winPercentage> 
     
     <active>False</active> 
-    </election>
+    <candidate>
+    <name>Jane Doe</name> 
+    
+    <party>Fiesta</party> 
+    <votes>0</votes> 
+    </candidate><candidate>
+    <name>Henry Joe</name> 
+    
+    <party>Any-and-all</party> 
+    <votes>0</votes> 
+    </candidate></election>
+</EMS>e></election>
 </EMS>
