@@ -28,7 +28,7 @@ namespace Electronic_Voting_System
             // Fill out validation list
             foreach (var user in validationList)
             {
-                listBox1.Items.Add(user.Key);
+                listBox1.Items.Add(user.Value.getUserProfile().getName());
             }
         }
 
@@ -65,6 +65,7 @@ namespace Electronic_Voting_System
                 // Validate the user at that index
                 string username = listBox1.Items[index].ToString();
                 EMS.AuthenticateUser(validationList[username]);
+                listBox1.Items.RemoveAt(index);
             }
         }
     }

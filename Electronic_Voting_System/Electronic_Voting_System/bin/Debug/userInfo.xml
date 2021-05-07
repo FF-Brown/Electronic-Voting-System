@@ -3,7 +3,7 @@
 	<user>
     <name>Frank</name> 
     
-    <username>admin</username> 
+    <username>leUsername</username> 
     
     <address>WA</address> 
     
@@ -15,7 +15,7 @@
     
     <ssn>123456789</ssn> 
     
-    <isAdmin>True</isAdmin> 
+    <isAdmin>False</isAdmin> 
     
     <hasVoted>False</hasVoted> 
     <isRegistered>False</isRegistered> 
@@ -40,4 +40,24 @@
     <hasVoted>False</hasVoted> 
     <isRegistered>False</isRegistered> 
     </user>
-</userList>
+	<user>
+    <name>Koji</name> 
+    
+    <username>Koji</username> 
+    
+    <address>AZ</address> 
+    
+    <email>get@live.com</email> 
+    
+    <pw>123</pw> 
+    
+    <dob>1/24/1999</dob> 
+    
+    <ssn>234453432</ssn> 
+    
+    <isAdmin>False</isAdmin> 
+    
+    <hasVoted>False</hasVoted> 
+    <isRegistered>True</isRegistered> 
+    </user>
+</userList>>
