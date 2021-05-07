@@ -37,21 +37,21 @@ namespace Electronic_Voting_System
             return election.is_active;
         }
 
-        public void DisplayAdminPortal()
-        {
-            throw new NotImplementedException();
-        }
-
         public Dictionary<string, User> GetUserList()
         {
             return this.users;
+        }
+
+        public bool UserIsAdmin()
+        {
+            return this.currentUser.getIsAdmin();
         }
 
         /// <summary>
         /// Adds new User object to this.users and this.pendingValidations.
         /// </summary>
         /// <param name="user"></param>
-        public void RegisterUser(User user)
+        private void RegisterUser(User user)
         {
             this.users.Add(user.getUserProfile().getUsername(), user);
             this.pendingValidations.Add(user.getUserProfile().getUsername(), user);
@@ -285,6 +285,30 @@ namespace Electronic_Voting_System
             return output;
         }
 
+        public void SaveXML()
+        {
+            FileStream electionOutFile = File.OpenWrite("electionInfo.xml");
+            FileStream userOutFile = File.OpenWrite("userInfo.xml");
+            if (electionOutFile != null && userOutFile != null)
+            {
+                this.saveToFile(electionOutFile, userOutFile);
+            }
+            electionOutFile.Close();
+            userOutFile.Close();
+        }
+
+        public void LoadXML()
+        {
+            FileStream electionInFile = File.OpenRead("electionInfo.xml");
+            FileStream userInFile = File.OpenRead("userInfo.xml");
+            if (electionInFile != null && userInFile != null)
+            {
+                this.loadFromFile(electionInFile, userInFile);
+            }
+            electionInFile.Close();
+            userInFile.Close();
+        }
+
         /// <summary>
         /// Should be called automatically before program closes.
         /// Writes election data to electionOutFile and userList to userOutFile.
@@ -439,7 +463,7 @@ namespace Electronic_Voting_System
 
                     foreach (XmlNode userNode in userRoot.ChildNodes)
                     {
-                        this.XMLToUser(out newUser, userRoot); // Load user element to user object
+                        this.XMLToUser(out newUser, userNode); // Load user element to user object
 
                         if (newUser.getIsRegistered())
                         {
@@ -447,6 +471,7 @@ namespace Electronic_Voting_System
                         }
                         else
                         {
+                            this.users.Add(newUser.getUserProfile().getName(), newUser);
                             this.pendingValidations.Add(newUser.getUserProfile().getName(), newUser); // Add user to pendingValidations if they are not yet registered
                         }
                     }
@@ -501,13 +526,16 @@ namespace Electronic_Voting_System
                 activeElement.OuterXml,
                 "\n    " + activeElement.OuterXml + " \n    ");
 
+            XmlNode importNode = null;
+
             // Create and assign candidate elements. 
             // MAY BE A PROBLEM. If it doesn't work, try just copying the body of the CandidateToXML() function into this loop.
             foreach (Candidate candidate in election.GetCandidates())
             {
                 if (this.CandidateToXML(candidate, out XmlElement candidateElement))
                 {
-                    xml.AppendChild(candidateElement);
+                    importNode = doc.ImportNode(candidateElement, true);
+                    xml.AppendChild(importNode);
                 }
             }
 
@@ -518,10 +546,10 @@ namespace Electronic_Voting_System
         {
             election = new Election();
 
-            election.start_date = DateTime.Parse(xml.Attributes["startDate"].Value); // Load start date
-            election.end_date = DateTime.Parse(xml.Attributes["endDate"].Value); // Load end date
-            election.min_win_percentage = Convert.ToDouble(xml.Attributes["winPercentage"].Value); // Load win percentage
-            election.is_active = Convert.ToBoolean(xml.Attributes["active"].Value); // Load isActive
+            election.start_date = DateTime.Parse(xml["startDate"].InnerText); // Load start date
+            election.end_date = DateTime.Parse(xml["endDate"].InnerText); // Load end date
+            election.min_win_percentage = Convert.ToDouble(xml["winPercentage"].InnerText); // Load win percentage
+            election.is_active = Convert.ToBoolean(xml["active"].InnerText); // Load isActive
 
             Candidate newCandidate = new Candidate(); // Create temp candidate object
 
@@ -529,7 +557,7 @@ namespace Electronic_Voting_System
             {
                 if (candidate.Name == "candidate") // If XML element Name == "candidate"
                 {
-                    XMLToCandidate(out newCandidate, xml); // Load one candidate from the xml
+                    XMLToCandidate(out newCandidate, candidate); // Load one candidate from the xml
                     this.election.addCandidate(newCandidate); // Add new candidate to election
                 }
             }
@@ -580,9 +608,9 @@ namespace Electronic_Voting_System
         {
             candidate = new Candidate();
 
-            candidate.name = xml.Attributes["name"].Value;
-            candidate.party = xml.Attributes["party"].Value;
-            candidate.total_votes = Convert.ToInt32(xml.Attributes["votes"].Value);
+            candidate.name = xml["name"].InnerText;
+            candidate.party = xml["party"].InnerText;
+            candidate.total_votes = Convert.ToInt32(xml["votes"].InnerText);
 
             return true;
         }
@@ -706,16 +734,16 @@ namespace Electronic_Voting_System
         {
             user = new User();
 
-            user.getUserProfile().setName(xml.Attributes["name"].Value); // Set Name
-            user.getUserProfile().setUsername(xml.Attributes["username"].Value); // Set Username
-            user.getUserProfile().setState(xml.Attributes["address"].Value); // Set address
-            user.getUserProfile().setEmail(xml.Attributes["email"].Value); // Set email
-            user.getUserProfile().setPW(xml.Attributes["pw"].Value); // Set password
-            user.getUserProfile().setDOB(xml.Attributes["dob"].Value); // Set DOB
-            user.getUserProfile().setSSN(Convert.ToInt32(xml.Attributes["ssn"].Value)); // Set SSN
-            user.setAdmin(Convert.ToBoolean(xml.Attributes["isAdmin"].Value)); // Set isAdmin
-            user.setIsRegistered(Convert.ToBoolean(xml.Attributes["isRegistered"].Value)); // Set isRegistered
-            user.setHasVoted(Convert.ToBoolean(xml.Attributes["hasVoted"].Value)); // Set hasVoted
+            user.getUserProfile().setName(xml["name"].InnerText); // Set Name
+            user.getUserProfile().setUsername(xml["username"].InnerText); // Set Username
+            user.getUserProfile().setState(xml["address"].InnerText); // Set address
+            user.getUserProfile().setEmail(xml["email"].InnerText); // Set email
+            user.getUserProfile().setPW(xml["pw"].InnerText); // Set password
+            user.getUserProfile().setDOB(xml["dob"].InnerText); // Set DOB
+            user.getUserProfile().setSSN(Convert.ToInt32(xml["ssn"].InnerText)); // Set SSN
+            user.setAdmin(Convert.ToBoolean(xml["isAdmin"].InnerText)); // Set isAdmin
+            user.setIsRegistered(Convert.ToBoolean(xml["isRegistered"].InnerText)); // Set isRegistered
+            user.setHasVoted(Convert.ToBoolean(xml["hasVoted"].InnerText)); // Set hasVoted
 
             return true;
         }
