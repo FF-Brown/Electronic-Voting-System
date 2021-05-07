@@ -13,10 +13,12 @@ namespace Electronic_Voting_System
     public partial class VotingForm : Form
     {
         private ElectionManagementSystem EMS;
-        public VotingForm(ElectionManagementSystem EMS)
+        User currentUser;
+        public VotingForm(ElectionManagementSystem EMS, User currentUser)
         {
             InitializeComponent();
             this.EMS = EMS;
+            this.currentUser = currentUser;
 
             // First fill out the candidate list
             List<Candidate> candidateList = EMS.GetCandidates();
@@ -45,7 +47,14 @@ namespace Electronic_Voting_System
                 candidateString = listBox1.Items[index].ToString();
                 candidateStringSplit = candidateString.Split(':');
                 candidateName = candidateStringSplit[0];
-                EMS.Vote(candidateName); // IMPLEMENT THIS
+
+                if (!currentUser.getHasVoted())
+                {
+                    // if the current user has not voted
+                    EMS.Vote(candidateName); // IMPLEMENT THIS
+                    currentUser.setHasVoted(true);
+                }
+
             }
         }
     }
