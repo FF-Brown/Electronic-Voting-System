@@ -12,17 +12,17 @@
     <name>Jane Doe</name> 
     
     <party>Fiesta</party> 
-    <votes>0</votes> 
+    <votes>3</votes> 
     </candidate>
 	<candidate>
     <name>Harriet Tubbman</name> 
     
     <party>Fiesta</party> 
-    <votes>0</votes> 
+    <votes>750</votes> 
     </candidate><candidate>
     <name>Henry Joe</name> 
     
     <party>Any-and-all</party> 
-    <votes>0</votes> 
+    <votes>5</votes> 
     </candidate></election>
 </EMS>
