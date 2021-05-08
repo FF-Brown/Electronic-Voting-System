@@ -29,6 +29,18 @@ namespace Electronic_Voting_System
         }
 
         /// <summary>
+        /// Method that updates the candidate list
+        /// </summary>
+        public void updateCandidateList()
+        {
+            List<Candidate> candidateList = EMS.GetCandidates();
+            foreach (var candidate in candidateList)
+            {
+                listBox1.Items.Add(candidate.name + ": " + candidate.total_votes);
+            }
+        }
+
+        /// <summary>
         /// Voting button method
         /// </summary>
         /// <param name="sender"></param>
@@ -53,6 +65,7 @@ namespace Electronic_Voting_System
                     // if the current user has not voted
                     EMS.Vote(candidateName); // IMPLEMENT THIS
                     currentUser.setHasVoted(true);
+                    updateCandidateList();
                 }
 
             }

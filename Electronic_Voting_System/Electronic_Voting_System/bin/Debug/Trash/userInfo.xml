@@ -9,13 +9,13 @@
     
     <email>daEmail</email> 
     
-    <pw>contrasena</pw> 
+    <pw>password</pw> 
     
     <dob>05/24/1970</dob> 
     
     <ssn>123456789</ssn> 
     
-    <isAdmin>True</isAdmin> 
+    <isAdmin>False</isAdmin> 
     
     <hasVoted>False</hasVoted> 
     <isRegistered>False</isRegistered> 
@@ -39,6 +39,8 @@
     
     <hasVoted>False</hasVoted> 
     <isRegistered>False</isRegistered> 
+    </user>
+</userList>erList>gistered> 
     </user>
 	<user>
     <name>Koji</name> 

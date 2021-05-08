@@ -68,6 +68,7 @@ namespace Electronic_Voting_System
                         {
                             // if the current user is the admin
                             adminPortalButton.Visible = true;
+                            this.currentAdmin = true;
                         }
 
                     }
@@ -129,7 +130,6 @@ namespace Electronic_Voting_System
 
         private void VoteButton_Click(object sender, EventArgs e)
         {
-            //this.loginResult = true; // REMOVE THIS 
             if(this.loginResult == true)
             {
                 // if a valid user is logged in
@@ -148,7 +148,6 @@ namespace Electronic_Voting_System
 
         private void adminPortalButton_Click(object sender, EventArgs e)
         {
-            this.currentAdmin = true; // REMOVE THIS AFTER
             if (this.currentAdmin)
             {
                 using (var form = new AdminForm(ref EMS))
@@ -160,11 +159,11 @@ namespace Electronic_Voting_System
 
         private void logoutButton_Click(object sender, EventArgs e)
         {
-            loginResult = true;
             if (this.loginResult)
             {
                 // If there is a user logged in, log them out
                 loginResult = false;
+                currentAdmin = false;
                 label2.Text = "Goodbye!";
             }
         }
