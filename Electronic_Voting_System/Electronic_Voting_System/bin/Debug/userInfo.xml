@@ -15,7 +15,7 @@
     
     <ssn>123456789</ssn> 
     
-    <isAdmin>False</isAdmin> 
+    <isAdmin>True</isAdmin> 
     
     <hasVoted>False</hasVoted> 
     <isRegistered>False</isRegistered> 
