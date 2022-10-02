@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Electronic_Voting_System
@@ -22,8 +16,8 @@ namespace Electronic_Voting_System
             validationList = EMS.GetPendingValidations();
 
             // Fill out the election status elements
-            this.label2.Text = "Election Status: " + EMS.GetElectionStatus().ToString();
-            this.label3.Text = EMS.GetEndDate();
+            label2.Text = "Election Status: " + EMS.GetElectionStatus().ToString();
+            label3.Text = EMS.GetEndDate();
 
             // Fill out validation list
             foreach (var user in validationList)
@@ -44,14 +38,15 @@ namespace Electronic_Voting_System
                 EMS.StartNewElection(startDate.ToString(), endDate.ToString());
 
                 // Update election status elements
-                this.label2.Text = "Election Status: " + EMS.GetElectionStatus().ToString();
-                this.label3.Text = EMS.GetEndDate();
+                label2.Text = "Election Status: " + EMS.GetElectionStatus().ToString();
+                label3.Text = EMS.GetEndDate();
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             //Force End election
+            Console.WriteLine("Do something in this function");
         }
 
         private void button3_Click(object sender, EventArgs e)
