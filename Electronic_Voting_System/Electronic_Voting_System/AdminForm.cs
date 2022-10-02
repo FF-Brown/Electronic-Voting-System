@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using L = System.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,13 +46,9 @@ namespace Electronic_Voting_System
 
                 // Update election status elements
                 this.label2.Text = "Election Status: " + EMS.GetElectionStatus().ToString();
+                Console.WriteLine("Log something here");
                 this.label3.Text = EMS.GetEndDate();
             }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //Force End election
         }
 
         private void button3_Click(object sender, EventArgs e)
