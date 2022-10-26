@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using L = System.Linq;
 using System.Windows.Forms;
 
 namespace Electronic_Voting_System
@@ -40,15 +41,11 @@ namespace Electronic_Voting_System
                 // Update election status elements
                 label2.Text = "Election Status: " + EMS.GetElectionStatus().ToString();
                 label3.Text = EMS.GetEndDate();
+                Console.WriteLine("Log something here");
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //Force End election
             Console.WriteLine("Do something in this function");
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             //validate registration
